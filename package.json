@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/akashinfinity12/Canteen-Backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "joi": "^17.7.0",
     "mongoose": "^6.9.0"

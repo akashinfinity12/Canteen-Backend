@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const foods = require("./routes/foods");
 
 app.use(express.json());
+app.use(cors());
 
 mongoose.set("strictQuery", false);
 mongoose
