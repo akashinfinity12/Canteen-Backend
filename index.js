@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const foods = require("./routes/foods");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
+const error = require("./middleware/error");
 
 if (!config.get("jwtPrivateKey")) {
   console.log("FATAL Error: jwtPrivateKey is not defined");
