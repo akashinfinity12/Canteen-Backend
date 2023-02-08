@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const config = require("config");
+const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 
 function userSchemaValidation(userObject) {
@@ -27,4 +29,17 @@ const userSchema = new mongoose.Schema({
   isAdmin: { type: Boolean },
 });
 
+userSchema.methods.generateAuthToken = function () {
+  const payload = {
+    _id: this._id,
+    isAdmin: this.isAdmin,
+  };
+  const token = jwt.sign(payload, config.get("jwtPrivateKey"));
+  return token;
+};
+
 const User = mongoose.model("User", userSchema);
+
+module.exports.userSchemaValidation = userSchemaValidation;
+module.exports.userSchema = userSchema;
+module.exports.User = User;
