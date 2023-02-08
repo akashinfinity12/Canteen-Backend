@@ -7,8 +7,8 @@ const Joi = require("joi");
 function userSchemaValidation(userObject) {
   const schema = Joi.object({
     name: Joi.string().required().min(3).max(255),
-    email: Joi.required().min(3).max(255).email(),
-    password: Joi.string().min(8).max(255).required(),
+    email: Joi.email().required().min(3).max(255),
+    password: Joi.string().required().min(8).max(255),
     rollNumber: Joi.string().required().min(3).max(10),
   });
 
