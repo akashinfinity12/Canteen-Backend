@@ -4,6 +4,7 @@ const app = express();
 const config = require("config");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const foods = require("./routes/foods");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
@@ -22,6 +23,7 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 app.use("/api/foods", foods);
 app.use("/api/auth", auth);
 app.use("/api/users", users);
