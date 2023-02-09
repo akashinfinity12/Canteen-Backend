@@ -1,4 +1,3 @@
-const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
 const jwt = require("jsonwebtoken");
@@ -7,7 +6,7 @@ const Joi = require("joi");
 function userSchemaValidation(userObject) {
   const schema = Joi.object({
     name: Joi.string().required().min(3).max(255),
-    email: Joi.email().required().min(3).max(255),
+    email: Joi.string().email().required().min(3).max(255),
     password: Joi.string().required().min(8).max(255),
     rollNumber: Joi.string().required().min(3).max(10),
   });

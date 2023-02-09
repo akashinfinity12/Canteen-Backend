@@ -11,7 +11,9 @@ router.post("/", async (req, res) => {
   const existingUser = await User.findOne({ email: req.body.email });
   if (existingUser) return res.status(400).send("Account already exists");
 
-  const user = new User(_.pick(req.body, ["name password email rollNumber"]));
+  const user = new User(
+    _.pick(req.body, ["name", "password", "email", "rollNumber"])
+  );
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   await user.save();

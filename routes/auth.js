@@ -6,7 +6,7 @@ const { User } = require("../models/user");
 
 function loginSchemaValidation(loginObject) {
   const schema = Joi.object({
-    email: Joi.email().min(3).max(255).required(),
+    email: Joi.string().email().min(3).max(255).required(),
     password: Joi.string().min(8).max(255).required(),
   });
 
@@ -21,8 +21,8 @@ router.post("/", async (req, res) => {
   if (!existingUser) return res.status(400).send("Invalid Email or Password");
 
   const validPassword = await bcrypt.compare(
-    existingUser.password,
-    req.body.password
+    req.body.password,
+    existingUser.password
   );
   if (!validPassword) return res.status(400).send("Invalid Email or Password");
 

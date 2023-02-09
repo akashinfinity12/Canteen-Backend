@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { foodSchemaValidate, Food } = require("../models/food");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
 
-router.get("/", async (req, res) => {
+router.get("/", [auth, admin], async (req, res) => {
   const foods = await Food.find();
   res.send(foods);
 });
